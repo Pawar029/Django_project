@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title%}
+Events
+{% endblock title%}
+{% block body%}
+{% comment %} <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Sr. No.</th>
+      <th scope="col">Date</th>
+      <th scope="col">Events</th>
+      <th scope="col">Timming</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>31 Aug 2022</td>
+      <td>Agaman Miravnak</br>Murti sthapana</td>
+      <td>11:00am</br>01:00pm</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>1 sept 2022</td>
+      <td>Three Legend Race</br>Handi Fod</td>
+      <td>07:00pm to 09:00pm</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>2 sept 2022</td>
+      <td>Sangeet Khurchi</br>Balloon Bursting</td>
+      <td>07:00pm to 09:00pm</td>
+    </tr>
+  </tbody>
+</table> {% endcomment %}
+
+<form method="post" action="/events">
+  {% csrf_token %}
+  <div class="my-3 ms-3">
+    <div class="row g-4">
+      <div class="col-sm-5">
+        <input type="text" class="form-control" placeholder="Game Name" name="game">
+      </div>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" placeholder="Date" name="date">
+      </div>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" placeholder="Timming" name="time">
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="ms-3"><button class="btn btn-primary" type="submit">Add New Event</button></div>
+</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Sr.No.</th>
+      <th scope="col">Events</th>
+      <th scope="col">Date</th>
+      <th scope="col">Timming</th>
+    </tr>
+  </thead>
+  </tbody>
+
+  {%for instance in data%}
+  <tr>
+    <td>
+      {{forloop.counter}}
+    </td>
+    <td>
+      {{instance.fields.game}}
+    </td>
+    <td>
+      {{instance.fields.date}}
+    </td>
+    <td>
+      {{instance.fields.time}}
+    </td>
+  </tr>
+  {%endfor%}
+  </tbody>
+</table>
+{% endblock body%}
